@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_login.ILoginModel;
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_register.IRegisterModel;
+import vn.phamthang.phamthang_hw_day06.utils.PrefManagement;
 
 public class Database {
     private ArrayList<UserModel> mListUser = new ArrayList<>();
@@ -45,10 +46,11 @@ public class Database {
     }
 
     public void register(UserModel model) {
-        if (isUserExited(model.getUsername())) {
-            iRegisterModel.onRegisError("Ten dang nhap da ton tai");
+        if (isUserExited(model.getUsername()) && isEmailExited(model.getEmail())) {
+            iRegisterModel.onRegisError("Ten dang nhap hoac email da ton tai");
         }else{
             mListUser.add(model);
+            saveData(mListUser); // luư danh sách
             iRegisterModel.onRegisSucces(model);
         }
     }
@@ -66,5 +68,9 @@ public class Database {
             iLoginModel.loginError("Tai khoan chua duoc dang ki");
         }
     }
+    private void saveData(ArrayList list){
+        PrefManagement.saveData(PrefManagement.PREF_NAME,list);
+    }
+
 
 }

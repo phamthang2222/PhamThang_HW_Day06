@@ -12,10 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 import vn.phamthang.phamthang_hw_day06.R;
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_register.IRegisterView;
 import vn.phamthang.phamthang_hw_day06.models.UserModel;
 import vn.phamthang.phamthang_hw_day06.presenter.RegisterPresenter;
+import vn.phamthang.phamthang_hw_day06.utils.PrefManagement;
 
 public class RegisterActivity extends AppCompatActivity implements IRegisterView {
     private EditText edtUsername,edtPassword,edtEmail,edtPhone;
@@ -28,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         setContentView(R.layout.activity_register);
 
         initView();
+        registerPresenter = new RegisterPresenter(this);
 
     }
 
@@ -56,6 +60,8 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
             newUser.setPhone(phone);
 
             register(newUser);
+
+
             finish();
         });
     }
@@ -71,8 +77,8 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     }
 
     @Override
-    public void onRegisSucces(UserModel model) {
-        Toast.makeText(this,"Xin chao "+model.getUsername(), Toast.LENGTH_SHORT).show();
+    public void onRegisSuccess(UserModel model) {
+        Toast.makeText(this,"Đăng kí thành công", Toast.LENGTH_SHORT).show();
 
     }
 

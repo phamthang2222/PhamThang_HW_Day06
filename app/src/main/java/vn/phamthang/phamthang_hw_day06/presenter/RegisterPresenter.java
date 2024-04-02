@@ -20,7 +20,7 @@ public class RegisterPresenter implements IRegisterModel{
     }
     @Override
     public void onRegisSucces(UserModel model) {
-        iRegisterView.onRegisSucces(model);
+        iRegisterView.onRegisSuccess(model);
     }
 
     @Override
