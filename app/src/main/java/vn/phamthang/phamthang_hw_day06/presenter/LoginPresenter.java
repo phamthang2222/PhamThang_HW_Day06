@@ -1,9 +1,12 @@
 package vn.phamthang.phamthang_hw_day06.presenter;
 
+import android.util.Log;
+
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_login.ILoginModel;
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_login.ILoginView;
 import vn.phamthang.phamthang_hw_day06.models.Database;
 import vn.phamthang.phamthang_hw_day06.models.UserModel;
+import vn.phamthang.phamthang_hw_day06.utils.PrefManagement;
 
 public class LoginPresenter implements ILoginModel {
     private ILoginView iLoginView;
@@ -29,4 +32,5 @@ public class LoginPresenter implements ILoginModel {
         iLoginView.onLoginError(error);
 
     }
+
 }

@@ -8,9 +8,13 @@ import vn.phamthang.phamthang_hw_day06.utils.PrefManagement;
 
 public class Database {
     private ArrayList<UserModel> mListUser = new ArrayList<>();
-    private static Database intances;
+    public static Database intances;
     private ILoginModel iLoginModel;
     private IRegisterModel iRegisterModel;
+
+    public void setmListUser(ArrayList<UserModel> mListUser) {
+        this.mListUser = mListUser;
+    }
 
     public void setiLoginModel(ILoginModel iLoginModel) {
         this.iLoginModel = iLoginModel;
@@ -71,6 +75,5 @@ public class Database {
     private void saveData(ArrayList list){
         PrefManagement.saveData(PrefManagement.PREF_NAME,list);
     }
-
 
 }

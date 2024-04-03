@@ -10,9 +10,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 import vn.phamthang.phamthang_hw_day06.R;
 import vn.phamthang.phamthang_hw_day06.constaints.Constant;
 import vn.phamthang.phamthang_hw_day06.interfaces.interface_login.ILoginView;
+import vn.phamthang.phamthang_hw_day06.models.Database;
 import vn.phamthang.phamthang_hw_day06.models.UserModel;
 import vn.phamthang.phamthang_hw_day06.presenter.LoginPresenter;
 import vn.phamthang.phamthang_hw_day06.utils.PrefManagement;
@@ -28,8 +31,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getData();
         initView();
+        getData();
         loginPresenter =new LoginPresenter(this);
     }
 
@@ -60,15 +63,13 @@ public class LoginActivity extends AppCompatActivity implements ILoginView{
         Toast.makeText(this, "Xin chao "+model.toString(),Toast.LENGTH_SHORT).show();
         startActivity(new Intent(LoginActivity.this,HomeActivity.class));
         finish();
-
     }
-
     @Override
     public void onLoginError(String error) {
         Toast.makeText(this, "Login Fail "+error,Toast.LENGTH_SHORT).show();
     }
     private void getData(){
-        PrefManagement.getData(Constant.KEY);
-        Log.d("oncreat:",PrefManagement.getData(Constant.KEY).toString());
+        Database.getInstance().setmListUser(PrefManagement.getData(PrefManagement.PREF_NAME));
+        Log.d("onCreate:", PrefManagement.getData(PrefManagement.PREF_NAME).toString());
     }
 }
