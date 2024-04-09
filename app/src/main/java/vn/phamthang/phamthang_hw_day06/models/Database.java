@@ -74,6 +74,7 @@ public class Database {
     }
     private void saveData(ArrayList list){
         PrefManagement.saveData(PrefManagement.PREF_NAME,list);
+
     }
 
 }
